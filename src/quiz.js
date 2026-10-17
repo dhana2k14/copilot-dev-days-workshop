@@ -47,6 +47,26 @@ function getGrade(percentage) {
   if (percentage >= 50) return "C";
   return "Keep practicing";
 }
+
+/**
+ * Returns true when the current percentage beats the stored best score.
+ * A null best counts as an initial best score.
+ */
+function isNewBestScore(current, best) {
+  const numericCurrent = Number(current);
+  const numericBest = best === null || best === undefined ? null : Number(best);
+
+  if (!Number.isFinite(numericCurrent)) {
+    return false;
+  }
+
+  if (numericBest === null || Number.isNaN(numericBest)) {
+    return true;
+  }
+
+  return numericCurrent > numericBest;
+}
+
 // Returns an encouraging message for a grade: "A", "B", "C" or anything else
 function getFeedbackMessage(grade) {
   switch (grade) {
@@ -106,6 +126,7 @@ if (typeof globalThis !== "undefined") {
   globalThis.isCorrect = isCorrect;
   globalThis.calculatePercentage = calculatePercentage;
   globalThis.getGrade = getGrade;
+  globalThis.isNewBestScore = isNewBestScore;
   globalThis.getFeedbackMessage = getFeedbackMessage;
   globalThis.formatTimeLeft = formatTimeLeft;
   globalThis.createQuiz = createQuiz;
@@ -120,6 +141,7 @@ if (typeof module !== "undefined" && module.exports) {
     isCorrect,
     calculatePercentage,
     getGrade,
+    isNewBestScore,
     getFeedbackMessage,
     formatTimeLeft,
     createQuiz,
