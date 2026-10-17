@@ -36,6 +36,21 @@ const QUESTIONS = [
     ],
     answer: 1,
   },
+  {
+    question: "What file defines a GitHub Actions workflow?",
+    options: [".github/workflows/main.yml", "Dockerfile", ".gitignore", "package.json"],
+    answer: 0,
+  },
+  {
+    question: "Which event starts a workflow when code is pushed?",
+    options: ["pull_request", "push", "release", "schedule"],
+    answer: 1,
+  },
+  {
+    question: "What does the 'uses' keyword do in a workflow?",
+    options: ["Deletes a runner", "Calls an action", "Closes a pull request", "Creates a branch"],
+    answer: 1,
+  },
 ];
 
 // Lets Node.js tests load this file. Browsers ignore this block.
