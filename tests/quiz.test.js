@@ -12,6 +12,7 @@ const {
   createQuiz,
   answerQuestion,
   isQuizFinished,
+  isNewBestScore,
 } = require("../src/quiz.js");
 
 test("isCorrect returns true for the right answer", () => {
@@ -90,4 +91,14 @@ test("isQuizFinished returns true only when all questions have been answered", (
 
   assert.equal(isQuizFinished(state), false);
   assert.equal(isQuizFinished({ ...state, current: 1 }), true);
+});
+
+test("isNewBestScore treats null best as an initial record", () => {
+  assert.equal(isNewBestScore(80, null), true);
+});
+
+test("isNewBestScore returns true only when current exceeds the stored best", () => {
+  assert.equal(isNewBestScore(90, 80), true);
+  assert.equal(isNewBestScore(80, 80), false);
+  assert.equal(isNewBestScore(75, 80), false);
 });
